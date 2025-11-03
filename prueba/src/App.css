@@ -40,3 +40,34 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+.caja{
+  border: 2px solid #fff;
+  padding:10px;
+  border-radius:10px;
+  width: 500px;
+  transition: background-color .5s,color .5s, scale .5s;
+}
+
+.caja:hover{
+  background-color: #f0f0f0;
+  color: #000;
+  scale: 1.05;
+}
+
+.buttonDetalles{
+  background-color: #fff;  
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color .3s, color .3s;
+}
+.buttonDetalles:hover{
+  background-color: #21a1f1;
+  color: #fff;
+}

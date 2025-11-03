@@ -1,16 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import '../Detalles.css'
 
 export default function Detalle() {
   const { id } = useParams();
-  const [user, setUser] = useState(null);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const obtenerUsuario = async () => {
       try {
         const res = await axios.get(`https://dummyjson.com/users/${id}`);
-        setUser(res.data);
+        setData(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -19,23 +20,26 @@ export default function Detalle() {
     obtenerUsuario();
   }, [id]);
 
+  if (!data.id) {
+    return <div>Cargando...</div>;
+  }
+
 
 
   return (
-    <div>
-      <h1>Detalles del Usuario</h1>
+    <div className="cajaUsuario">
+      <h1>Detalles del usuario </h1>
 
-      <h2>
-        {user.firstName} {user.lastName}
-      </h2>
+      <h2>{data.firstName} {data.lastName}</h2>
 
-      <p>Email: {user.email}</p>
-      <p>Edad: {user.age}</p>
-      <p>Altura: {user.height} cm</p>
-      <p>Peso: {user.weight} kg</p>
-      <p>Teléfono: {user.phone}</p>
-      <p>Ciudad: {user.address.city}</p>
-
+      <p>Email: {data.email}</p>
+      <p>Edad: {data.age}</p>
+      <p>Altura: {data.height} cm</p>
+      <p>Peso: {data.weight} kg</p>
+      <p>Teléfono: {data.phone}</p>
+      <p>Ciudad: {data.address?.city}</p>
+      <img src={data.image} alt=""  />
+      <br/>
       <Link to="/">
         <button>Volver</button>
       </Link>
